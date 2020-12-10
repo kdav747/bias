@@ -5,31 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://use.typekit.net/bne7zva.css">
 
-<div class="dropdown">
-    <button class="dropbtn" onclick="myFunction()">
-        <span class="lines"></span>
-    </button>
-    <div class="dropdown-content" id="myDropdown">
-      <a href="https://kdav747.github.io/bias/" style="color: black;">statement</a>
-      <a href="/bias_filter.html" style="color: black;">bias filter</a>
-      <a href="/indiv_remove.html" style="color: black;">individual</a>
-      <a href="/coding_bias_2.html" style="color: black;">control</a>
-    </div>
-  </div>
-
-<div id='container'></div>
-<div id="next">
-  <a href="/coding_bias_2.html">NEXT</a>
-</div>
-
-<div id="space"></div>
-
 
 <style>
 body, html{
-  margin: 0;
+  /* margin: 180; */
   width: 100%;
-  height: 500vh;
+  /* height: 500vh; */
   background-color: #f5f5f5;
   color: #212121;
   font-family: sans-serif;
@@ -189,7 +170,7 @@ body, html{
   right: 0;
   top: 0;
   bottom: 0;
-  margin: auto;
+  /* margin: auto; */
 }
 
 .trigger {
@@ -214,7 +195,7 @@ p {
 }
 
 #next {
-  margin-top: 4500px;
+  margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
   font-family: poppins, sans-serif;
@@ -229,25 +210,44 @@ p {
   opacity: 1;
 }
 
-a:link {
+a.link {
   text-decoration: none;
   color: whitesmoke;
   cursor: default;
 }
-a:visited {
+a.visited {
   text-decoration: none;
   color: whitesmoke;
 }
 #next:hover {
-  opacity: 0;
+  opacity: .8;
 }
 
 #space {
-  margin: 300px;
+  margin-top: 300px;
 }
 
-
 </style>
+
+<div class="dropdown">
+    <button class="dropbtn" onclick="myFunction()">
+        <span class="lines"></span>
+    </button>
+    <div class="dropdown-content" id="myDropdown">
+      <a href="https://kdav747.github.io/bias/" style="color: black;">statement</a>
+      <a href="/bias_filter.html" style="color: black;">bias filter</a>
+      <a href="/indiv_remove.html" style="color: black;">individual</a>
+      <a href="/coding_bias_2.html" style="color: black;">control</a>
+    </div>
+  </div>
+
+<div id='container'></div>
+<div id="next">
+    <a href="/intro_animation.html" style="color: whitesmoke; cursor: default; text-decoration: none;">NEXT</a>
+</div>
+
+<div id="space"></div>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/4.13.0/bodymovin.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
