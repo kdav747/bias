@@ -3,28 +3,164 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://use.typekit.net/bne7zva.css">
+</head>
 <style>
 
 body {
-  background-color: #f5f5f5;
-
+  background-color: hsl(0, 0%, 96%);
+  grid-template-rows: auto auto;
 }
 
-#title {
+.dropdown {
+  z-index: 2;
+  margin-right: 115px;
+}
+
+.dropdown .dropbtn {
+  z-index: 2;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: black;
+  padding: 14px 17px;
+  background-color: transparent;
+}
+
+.dropbtn:hover {
+  cursor: default;
+}
+
+.dropdown:hover {
+  text-decoration: none;
+  cursor: default;
+}
+
+.dropdown-content {
+  margin-left: 100px;
+  display: none;
+  position: relative;
+  background-color: transparent;
+  min-width: 160px;
+  z-index: 2;
   font-family: poppins, sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   font-style: normal;
-  margin-top: 90px;
-  text-align: center;
-  color: #3d3935;
-  font-size: 20px;
+  text-align: left;
+  font-size: 15px;
 }
 
-* {box-sizing: border-box;}
+.dropdown-content a {
+  z-index: 2;
+  cursor: default;  
+  float: none;
+  clear: right;
+  color: black;
+  padding: 5px 16px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.dropdown-content a:hover {
+  opacity: .5;
+}
+
+.show {
+  display: block;
+}
+
+/* DROPDOWN MENU */
+
+.lines-button {
+  z-index: 2;
+  cursor: default;
+  background: transparent;
+  padding: 15px 3px;
+  border: 0;
+  outline: none;
+}
+
+.lines {
+  z-index: 2;
+  margin: 30px;
+  grid-row: 1;
+  display: inline-block;
+  width: 2.5rem;
+  height: 0.3571428571rem;
+  background: #000000;
+  -webkit-transition: 0.35s;
+  -moz-transition: 0.35s;
+  -ms-transition: 0.35s;
+  transition: 0.35s;
+  position: absolute;
+  background: transparent;
+  /*create the upper and lower lines as pseudo-elements of the middle line*/
+}
+.lines:before, .lines:after {
+  display: inline-block;
+  width: 2.5rem;
+  height: 0.3571428571rem;
+  background: #000000;
+  -webkit-transition: 0.35s;
+  -moz-transition: 0.35s;
+  -ms-transition: 0.35s;
+  transition: 0.35s;
+  position: absolute;
+  left: 0;
+  content: '';
+  -webkit-transform-origin: 0.1785714286rem center;
+  -moz-transform-origin: 0.1785714286rem center;
+  -ms-transform-origin: 0.1785714286rem center;
+  transform-origin: 0.1785714286rem center;
+}
+.lines:before {
+  top: 0.625rem;
+}
+.lines:after {
+  top: -0.625rem;
+}
+
+.dropbtn .lines:before, .dropbtn .lines:after {
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  transition: top .3s .1s ease, transform .3s ease;
+}
+
+.dropbtn.close .lines {
+  -webkit-transform: rotate3d(0, 0, 1, 90deg);
+  -moz-transform: rotate3d(0, 0, 1, 90deg);
+  -ms-transform: rotate3d(0, 0, 1, 90deg);
+  transform: rotate3d(0, 0, 1, 90deg);
+}
+.dropbtn.close .lines:before, .dropbtn.close .lines:after {
+  -webkit-transition: top .3s ease, transform .3s .1s ease;
+  -moz-transition: top .3s ease, transform .3s .1s ease;
+  -ms-transition: top .3s ease, transform .3s .1s ease;
+  transition: top .3s ease, transform .3s .1s ease;
+  top: 0;
+}
+.dropbtn.close .lines:before {
+  -webkit-transform: rotate3d(0, 0, 1, -45deg);
+  -moz-transform: rotate3d(0, 0, 1, -45deg);
+  -ms-transform: rotate3d(0, 0, 1, -45deg);
+  transform: rotate3d(0, 0, 1, -45deg);
+}
+.dropbtn.close .lines:after {
+  -webkit-transform: rotate3d(0, 0, 1, 45deg);
+  -moz-transform: rotate3d(0, 0, 1, 45deg);
+  -ms-transform: rotate3d(0, 0, 1, 45deg);
+  transform: rotate3d(0, 0, 1, 45deg);
+}
+
+/* DROPDOWN MENU END */
 
 .img-magnifier-container {
+  z-index: 1;
+  grid-row: 2;
   position:relative;
   cursor: none;
+  margin-top: 92px;
 }
 
 .img-magnifier-glass {
@@ -38,11 +174,13 @@ body {
 }
 
 #bias_view {
+  grid-row: 1;
   position: absolute;
   opacity: 0;
 }
 
 #next {
+  margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
   font-family: poppins, sans-serif;
@@ -57,12 +195,12 @@ body {
   opacity: 1;
 }
 
-a:link {
+a.link {
   text-decoration: none;
   color: whitesmoke;
   cursor: default;
 }
-a:visited {
+a.visited {
   text-decoration: none;
   color: whitesmoke;
 }
@@ -71,12 +209,12 @@ a:visited {
 }
 
 #space {
-  margin-top: 800px;
+  margin-top: 300px;
 }
 
-
-
 </style>
+
+
 <script>
 function magnify(imgID, zoom) {
   var img, glass, w, h, bw;
@@ -135,16 +273,32 @@ function magnify(imgID, zoom) {
   }
 }
 </script>
-</head>
+
+
 <body>
 
-<p id="title">filter out biases</p>
+  <!-- MENU -->
+  <div class="dropdown">
+      <button class="dropbtn" onclick="myFunction()">
+          <span class="lines"></span>
+      </button>
+      <div class="dropdown-content" id="myDropdown">
+        <a href="/index.html" style="color: black;">statement</a>
+        <a href="/bias_filter.html" style="color: black;">bias filter</a>
+        <a href="/indiv_remove.html" style="color: black;">individual</a>
+        <a href="/coding_bias_2.html" style="color: black;">control</a>
+      </div>
+    </div>
+
+  <!-- MENU -->
+
 <div class="img-magnifier-container">
   <img id="bias_view" src="assets/2indiv_group-06.jpg" width="1640 " height="741.4167">
   <img id="myimage" src="assets/2indiv_group-05.jpg" width="1640 " height="741.4167">
 </div>
+
 <div id="next">
-  <a href="/intro_animation.html">NEXT</a>
+  <a href="/intro_animation.html" style="color: whitesmoke; cursor: default; text-decoration: none;">NEXT</a>
 </div>
 <div id="space"></div>
 
@@ -152,6 +306,29 @@ function magnify(imgID, zoom) {
 /* Initiate Magnify Function
 with the id of the image, and the strength of the magnifier glass:*/
 magnify("myimage", 1);
+
+</script>
+
+<script>
+
+var anchor = document.querySelectorAll('button');
+
+[].forEach.call(anchor, function(anchor){
+  var open = false;
+  anchor.onclick = function(event){
+    event.preventDefault();
+    document.getElementById("myDropdown").classList.toggle("show");
+    if(!open){
+      this.classList.add('close');
+      open = true;
+    }
+    else{
+      this.classList.remove('close');
+      open = false;
+    }
+  }
+}); 
+
 </script>
 
 </body>
